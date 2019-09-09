@@ -1,0 +1,1 @@
+mongod --port 23233 --dbpath F:\³ÂÏþ¶«\SoftProgram\C#C++\SoftDogStandingBook(BS)\StandingBook\MongoDB\Data --logpath F:\³ÂÏþ¶«\SoftProgram\C#C++\SoftDogStandingBook(BS)\StandingBook\MongoDB\Log

@@ -1,0 +1,56 @@
+2019-09-09T09:00:17.149+0800 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2019-09-09T09:00:17.154+0800 I CONTROL  [initandlisten] MongoDB starting : pid=6892 port=23233 dbpath=F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBook(BS)\StandingBook\MongoDB\Data 64-bit host=SC-201908131552
+2019-09-09T09:00:17.154+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2019-09-09T09:00:17.154+0800 I CONTROL  [initandlisten] db version v4.0.11
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten] git version: 417d1a712e9f040d54beca8e4943edce218e9a8c
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten] modules: none
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten] build environment:
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-09-09T09:00:17.155+0800 I CONTROL  [initandlisten] options: { net: { port: 23233 }, storage: { dbPath: "F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBook(BS)\StandingBook\MongoDB\Data" }, systemLog: { destination: "file", path: "F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBook(BS)\StandingBook\MongoDB\Log" } }
+2019-09-09T09:00:17.157+0800 I STORAGE  [initandlisten] Detected data files in F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBook(BS)\StandingBook\MongoDB\Data created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2019-09-09T09:00:17.157+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3527M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2019-09-09T09:00:17.463+0800 I STORAGE  [initandlisten] WiredTiger message [1567990817:463258][6892:140722615115344], txn-recover: Main recovery loop: starting at 1/54400 to 2/256
+2019-09-09T09:00:17.569+0800 I STORAGE  [initandlisten] WiredTiger message [1567990817:568975][6892:140722615115344], txn-recover: Recovering log 1 through 2
+2019-09-09T09:00:17.668+0800 I STORAGE  [initandlisten] WiredTiger message [1567990817:667966][6892:140722615115344], txn-recover: Recovering log 2 through 2
+2019-09-09T09:00:17.718+0800 I STORAGE  [initandlisten] WiredTiger message [1567990817:718817][6892:140722615115344], txn-recover: Set global recovery timestamp: 0
+2019-09-09T09:00:17.927+0800 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2019-09-09T09:00:18.032+0800 I CONTROL  [initandlisten] 
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] 
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2019-09-09T09:00:18.033+0800 I CONTROL  [initandlisten] 
+2019-09-09T09:00:18.616+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'F:/陈晓东/SoftProgram/C#C++/SoftDogStandingBook(BS)/StandingBook/MongoDB/Data/diagnostic.data'
+2019-09-09T09:00:18.618+0800 I NETWORK  [initandlisten] waiting for connections on port 23233
+2019-09-09T09:45:58.825+0800 I NETWORK  [listener] connection accepted from 127.0.0.1:52440 #1 (1 connection now open)
+2019-09-09T09:46:09.134+0800 I NETWORK  [conn1] end connection 127.0.0.1:52440 (0 connections now open)
+2019-09-09T09:59:12.323+0800 I NETWORK  [listener] connection accepted from 127.0.0.1:53166 #2 (1 connection now open)
+2019-09-09T09:59:12.335+0800 I NETWORK  [conn2] received client metadata from 127.0.0.1:53166 conn2: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.11" }, os: { type: "Windows", name: "Microsoft Windows 10", architecture: "x86_64", version: "10.0 (build 18362)" } }
+2019-09-09T10:05:53.027+0800 I NETWORK  [listener] connection accepted from 127.0.0.1:53544 #3 (2 connections now open)
+2019-09-09T10:05:53.036+0800 I NETWORK  [conn3] received client metadata from 127.0.0.1:53544 conn3: { driver: { name: "nodejs", version: "2.2.36" }, os: { type: "Windows_NT", name: "win32", architecture: "x64", version: "10.0.18362" }, platform: "Node.js v10.16.0, LE, mongodb-core: 2.1.20" }
+2019-09-09T10:05:53.062+0800 I NETWORK  [conn3] end connection 127.0.0.1:53544 (1 connection now open)
+2019-09-09T10:08:21.387+0800 I NETWORK  [conn2] end connection 127.0.0.1:53166 (0 connections now open)
+2019-09-09T10:08:25.344+0800 I CONTROL  [thread4] Ctrl-C signal
+2019-09-09T10:08:25.344+0800 I CONTROL  [consoleTerminate] got CTRL_C_EVENT, will terminate after current cmd ends
+2019-09-09T10:08:25.347+0800 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2019-09-09T10:08:25.351+0800 I CONTROL  [consoleTerminate] Shutting down free monitoring
+2019-09-09T10:08:25.352+0800 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2019-09-09T10:08:25.361+0800 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2019-09-09T10:08:25.361+0800 I STORAGE  [consoleTerminate] Shutting down session sweeper thread
+2019-09-09T10:08:25.362+0800 I STORAGE  [consoleTerminate] Finished shutting down session sweeper thread
+2019-09-09T10:08:25.432+0800 I STORAGE  [consoleTerminate] Downgrading WiredTiger datafiles.
+2019-09-09T10:08:25.830+0800 I STORAGE  [consoleTerminate] WiredTiger message [1567994905:829857][6892:140722615115344], txn-recover: Main recovery loop: starting at 2/19712 to 3/256
+2019-09-09T10:08:25.935+0800 I STORAGE  [consoleTerminate] WiredTiger message [1567994905:934577][6892:140722615115344], txn-recover: Recovering log 2 through 3
+2019-09-09T10:08:26.022+0800 I STORAGE  [consoleTerminate] WiredTiger message [1567994906:21322][6892:140722615115344], txn-recover: Recovering log 3 through 3
+2019-09-09T10:08:26.074+0800 I STORAGE  [consoleTerminate] WiredTiger message [1567994906:74203][6892:140722615115344], txn-recover: Set global recovery timestamp: 0
+2019-09-09T10:08:26.779+0800 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2019-09-09T10:08:26.780+0800 I CONTROL  [consoleTerminate] now exiting
+2019-09-09T10:08:26.780+0800 I CONTROL  [consoleTerminate] shutting down with code:12
