@@ -41,9 +41,9 @@
           <el-button
             type="text"
             size="small"
-            @click.native.prevent="exportRow(scope.$index,data)"
+            @click.native.prevent="exportRow(scope.row)"
           >导出</el-button>
-          <el-button type="text" size="small" @click.native.prevent="editRow(scope.$index,data)">修改</el-button>
+          <el-button type="text" size="small" @click.native.prevent="editRow(scope.row)">修改</el-button>
         </template>
       </el-table-column>
       <el-table-column fixed="left" prop="Dogcode" label="加密锁编号" width="150" srotable />
@@ -90,7 +90,8 @@ export default {
       fields: fields,
       selectedvalue: "Dogcode",
       input: "",
-      multiSelection: []
+      multiSelection: [],
+      keepalive: true
     };
   },
   mounted() {
@@ -132,16 +133,16 @@ export default {
       this.multiSelection = e;
       console.log(e);
     },
-    exportRow(index, rows) {
-      console.log(index, rows);
+    exportRow(data) {
       if (this.multiSelection.length == 0) {
         //导出单个
       } else {
         //导出多个
       }
     },
-    editRow(index,rows){
+    editRow(data) {
       //修改
+      console.log(data);
     },
     newClick() {
       this.$router.push("/insert");
