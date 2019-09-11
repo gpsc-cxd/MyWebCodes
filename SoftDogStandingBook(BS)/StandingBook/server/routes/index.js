@@ -9,9 +9,16 @@ router.get('/', function (req, res, next) {
 //post
 router.get('/show', function (req, res, next) {
   var param = req.query;
+  console.log(param);
   var selector = JSON.parse(param.selector);
-  console.log(req.query);
-  handler(req, res, param.collection.toString(), selector, data => {
+  var parser={};
+  for(var key in selector){
+    console.log(key);
+    parser[key]=new RegExp(selector[key])
+  }
+  console.log(parser);
+  // var selector = param.selector;
+  handler(req, res, param.collection, parser, data => {
     // console.log(res);
     res.send(data);
   })
