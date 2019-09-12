@@ -2,8 +2,8 @@
   <div id="app">
     <h1>加密锁台账管理系统</h1>
     <!-- <transition name="fade"> -->
-      <keep-alive>
-        <router-view :title="$route.meta.title" v-if="$route.meta.keepAlive" />
+      <keep-alive include="HelloWorld">
+        <router-view/>
       </keep-alive>
     <!-- </transition> -->
   </div>

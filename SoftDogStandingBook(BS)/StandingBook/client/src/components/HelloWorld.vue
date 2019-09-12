@@ -32,17 +32,11 @@
       border
       style="width:100%"
       max-height="600"
-      :default-sort="{prop:'Applydate',order:'descending'}"
-      @selection-change="handleSelectionChange"
     >
-      <el-table-column fixed="left" type="selection" width="55" />
-      <el-table-column fixed="left" label="操作" width="100">
+      <!-- <el-table-column fixed="left" type="selection" width="55" /> -->
+      <el-table-column fixed="left" label="操作" width="60">
         <template slot-scope="scope">
-          <el-button
-            type="text"
-            size="small"
-            @click.native.prevent="exportRow(scope.row)"
-          >导出</el-button>
+          <!-- <el-button type="text" size="small" @click.native.prevent="exportRow(scope.row)">导出</el-button> -->
           <el-button type="text" size="small" @click.native.prevent="editRow(scope.row)">修改</el-button>
         </template>
       </el-table-column>
@@ -79,13 +73,13 @@
 import axios from "axios";
 import qs from "qs";
 import { fields } from "../models/fields";
+import Vue from "vue";
 // axios.defaults.withCredentials=true;
 // axios.defaults.baseURL="http://localhost:3000";
 export default {
   name: "HelloWorld",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
       data: [],
       fields: fields,
       selectedvalue: "Dogcode",
@@ -100,6 +94,18 @@ export default {
       console.log(res.data);
       this.data = res.data;
     });
+  },
+  activated() {
+    console.log(this.$route.params);
+    if (this.$route.params.reload) {
+      //刷新
+      var params = { collection: "standingbook", selector: {} };
+      axios.get("/api/show", { params }).then(res => {
+        console.log(res.data);
+        this.data = res.data;
+        Vue.set(this.data, this.data, res.data);
+      });
+    }
   },
   methods: {
     filterDogtype(value, row, column) {
@@ -143,6 +149,7 @@ export default {
     editRow(data) {
       //修改
       console.log(data);
+      this.$router.push({ name: "Insert", params: data });
     },
     newClick() {
       this.$router.push("/insert");

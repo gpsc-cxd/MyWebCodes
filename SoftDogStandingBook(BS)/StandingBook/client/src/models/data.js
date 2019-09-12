@@ -13,7 +13,7 @@ export var data = {
     Servicetype: [],
     Type: ''
 };
-export var rules = {
+export const rules = {
     Dogcode: [{ required: true, message: '请输入加密锁编码', trigger: 'blur' }],
     Applydate: [{ required: true, message: '请选择日期', trigger: 'change' }],
     Compname: [{ required: true, message: '请输入公司或部门的名称', trigger: 'blur' }],
