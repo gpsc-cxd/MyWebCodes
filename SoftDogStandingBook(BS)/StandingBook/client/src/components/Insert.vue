@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <el-button type="text" @click="Return">返回</el-button>
-    <el-button type="text" @click="Add" >{{buttonName}}</el-button>
+    <el-button type="text" @click="Add">{{buttonName}}</el-button>
     <el-form
       ref="form"
       :inline="true"
@@ -124,6 +124,15 @@
 import { data } from "../models/data";
 import { rules } from "../models/data";
 import { dogtypes, softtypes, servicetypes, types } from "../models/fields";
+import axios from "axios";
+var ArrayToString = function(array) {
+  var res = "";
+  array.forEach(element => {
+    res += element + ",";
+  });
+  res = res.substr(0, res.length - 1);
+  return res;
+};
 export default {
   name: "Insert",
   data() {
@@ -134,8 +143,22 @@ export default {
       softtypes: softtypes,
       servicetypes: servicetypes,
       types: types,
-      buttonName:'提交'
+      buttonName: ""
     };
+  },
+  mounted() {
+    // console.log(this.$route.params);
+    if (this.$route.params._id) {
+      this.buttonName = "修改";
+      //获取params，转换并赋值到this.data
+      var tmp = JSON.parse(JSON.stringify(this.$route.params));
+      tmp.Softwarename = tmp.Softwarename.split(",");
+      tmp.Servicetype = tmp.Servicetype.split(",");
+      console.log(tmp);
+      this.data = tmp;
+    } else {
+      this.buttonName = "提交";
+    }
   },
   methods: {
     Return() {
@@ -147,11 +170,57 @@ export default {
       //验证
       this.$refs.form.validate(valid => {
         if (valid) {
-          //添加数据
-          alert("sumbit");
-          window.history.length > 1
-            ? this.$router.go(-1)
-            : this.$router.push("/");
+          //先转换数据
+          var tmp = JSON.parse(JSON.stringify(this.data));
+          var softtmp = tmp.Softwarename;
+          var servicetmp = tmp.Servicetype;
+          var software = ArrayToString(softtmp);
+          tmp.Softwarename = software;
+          var service = ArrayToString(servicetmp);
+          tmp.Servicetype = service;
+          console.log(tmp);
+          if (!this.$route.params._id) {
+            //添加数据
+            axios
+              .get(
+                "/api/add?collection=standingbook&selector=" +
+                  JSON.stringify(tmp)
+              )
+              .then(res => {
+                console.log(res);
+                if (res.statusText == "OK") {
+                  alert("提交成功");
+                  this.$router.push({
+                    name: "HelloWorld",
+                    params: { reload: true }
+                  });
+                } else {
+                  alert("提交失败");
+                }
+              });
+          } else {
+            //修改数据
+            //修改selector使用的updateOne，需要添加$set
+            var id = tmp._id;
+            delete tmp._id;
+            var selector = [{ _id: id }, { $set: tmp }];
+            console.log(JSON.stringify(selector));
+            selector = JSON.stringify(selector);
+            axios
+              .get("/api/update?collection=standingbook&selector=" + selector)
+              .then(res => {
+                console.log(res);
+                if (res.statusText == "OK") {
+                  alert("修改成功");
+                  this.$router.push({
+                    name: "HelloWorld",
+                    params: { reload: true }
+                  });
+                } else {
+                  alert("修改失败");
+                }
+              });
+          }
         } else {
           console.log("error submit");
           return false;

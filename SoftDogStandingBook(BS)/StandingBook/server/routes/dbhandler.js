@@ -43,7 +43,7 @@ var deletes = function (db, collections, selector, fn) {
 var find = function (db, collections, selector, fn) {
   //collections="hashtable";
   var collection = db.db("data").collection(collections);
-  collection.find(selector).toArray(function (err, result) {
+  collection.find(selector).sort({_id:-1}).toArray(function (err, result) {
     //console.log(docs);
     try {
       assert.equal(err, null);
@@ -59,17 +59,20 @@ var find = function (db, collections, selector, fn) {
 //update
 var updates = function (db, collections, selector, fn) {
   var collection = db.db("data").collection(collections);
-
-  collection.updateOne(selector[0], selector[1], function (err, result) {
+  //需要转换_id为objectid
+  // selector[0]._id=mongo.ObjectID(selector[0]._id);
+  var where={_id:mongo.ObjectId(selector[0]._id)};
+  console.log(selector);
+  collection.updateOne(where, selector[1], function (err, result) {
     try {
       assert.equal(err, null);
       assert.notStrictEqual(0, result.result.n);
     } catch (e) {
-      console.log(e);
-      result.result = "";
+      // console.log(e);
+      result = [];
     };
 
-    fn(result.result ? [result.result] : []); //如果没报错且返回数据不是0，那么表示操作成功。
+    fn(result); //如果没报错且返回数据不是0，那么表示操作成功。
     db.close();
   });
 
