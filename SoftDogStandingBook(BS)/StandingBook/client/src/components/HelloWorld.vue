@@ -7,7 +7,12 @@
             <el-button type="success" @click="newClick">新增</el-button>
           </el-form-item>
           <el-form-item>
-            <el-select ref="selectedtype" v-model="selectedvalue" placeholder="请选择" style="width:200px">
+            <el-select
+              ref="selectedtype"
+              v-model="selectedvalue"
+              placeholder="请选择"
+              style="width:200px"
+            >
               <el-option
                 v-for="item in fields"
                 :key="item.value"
@@ -27,6 +32,9 @@
           <el-form-item>
             <el-button type="primary" @click="searchClick">搜索</el-button>
           </el-form-item>
+          <!-- <el-form-item>
+            <el-button type="primary" @click="exportExcel">导出台账</el-button>
+          </el-form-item> -->
         </div>
       </el-form>
     </div>
@@ -40,19 +48,19 @@
       :default-sort="{prop:'Applydate',order:'descending'}"
     >
       <!-- <el-table-column fixed="left" type="selection" width="55" /> -->
-      <el-table-column type="index" width="60" fixed="left" label="序号"/>
+      <el-table-column type="index" width="60" fixed="left" label="序号" />
       <el-table-column fixed="left" label="操作" width="100">
         <template slot-scope="scope">
           <el-button type="text" size="small" @click.native.prevent="exportRow(scope.row)">导出</el-button>
           <el-button type="text" size="small" @click.native.prevent="editRow(scope.row)">修改</el-button>
         </template>
       </el-table-column>
-      <el-table-column fixed="left" prop="Dogcode" label="加密锁编号" width="150" sortable >
+      <el-table-column fixed="left" prop="Dogcode" label="加密锁编号" width="150" sortable>
         <template slot-scope="scope">
           <p v-html="showData(scope.row.Dogcode)"></p>
         </template>
       </el-table-column>
-      <el-table-column prop="Applydate" label="申请日期" width="100" sortable >
+      <el-table-column prop="Applydate" label="申请日期" width="100" sortable>
         <template slot-scope="scope">
           <p v-html="showData(scope.row.Applydate)"></p>
         </template>
@@ -89,6 +97,20 @@ import axios from "axios";
 import qs from "qs";
 import { fields } from "../models/fields";
 import Vue from "vue";
+function GetNowDate() {
+  var date = new Date();
+  var dateStr =
+    date.getFullYear().toString() +
+    buling(date.getMonth().toString()) +
+    buling(date.getDay().toString()) +
+    buling(date.getHours().toString()) +
+    buling(date.getMinutes().toString()) +
+    buling(date.getSeconds().toString());
+  return dateStr;
+}
+function buling(input) {
+  return input.length < 2 ? "0" + input : input;
+}
 // axios.defaults.withCredentials=true;
 // axios.defaults.baseURL="http://localhost:3000";
 export default {
@@ -127,18 +149,16 @@ export default {
       const property = column["property"];
       return row[property] === value;
     },
-    showData(val){
+    showData(val) {
       var text = this.input;
-      if(text!=""){
-        let reg = new RegExp("("+text+")","g");
-        if(val!=null && val!==""){
-          return val.replace(reg,"<font style='color:red'>$1</font>");
-        }
-        else{
+      if (text != "") {
+        let reg = new RegExp("(" + text + ")", "g");
+        if (val != null && val !== "") {
+          return val.replace(reg, "<font style='color:red'>$1</font>");
+        } else {
           return val;
         }
-      }
-      else{
+      } else {
         return val;
       }
     },
@@ -165,6 +185,40 @@ export default {
           this.data = res.data;
         });
     },
+    exportExcel() {
+      var datas = JSON.parse(JSON.stringify(this.data));
+      //去掉所有的_id
+      datas.forEach(element => {
+        delete element._id;
+      });
+      // axios({
+      //   url:'/api/exportexcel',
+      //   method:'post',
+      //   data:datas
+      // },{responseType:'arraybuffer'}).then(res=>{
+      //   console.log(res);
+      // })       //参数太长报错
+      var type = this.$refs.selectedtype.value;
+      var keyw = this.input;
+      axios
+        .get("/api/exportexcel?type=" + type + "&keyword=" + keyw, {
+          responseType: "arraybuffer"
+        })
+        .then(res => {
+          console.log(res);
+          var blob = new Blob([res.data]);
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          var date = GetNowDate();
+          // var d = data.Applydate.replace(/\//g, "");
+          var filename = date + "-加密锁台账.xlsx";
+          a.download = filename;
+          a.style.display = "none";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
+    },
     handleSelectionChange(e) {
       this.multiSelection = e;
       console.log(e);
@@ -172,10 +226,29 @@ export default {
     exportRow(data) {
       //先去掉data._id
       delete data._id;
-      axios.get('/api/exportword?data='+JSON.stringify(data))
-      .then(res=>{
-        console.log(res);
-      })
+      axios
+        .get("/api/exportword?data=" + JSON.stringify(data), {
+          responseType: "arraybuffer"
+        })
+        .then(res => {
+          console.log(res);
+          var blob = new Blob([res.data]);
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          var d = data.Applydate.replace(/\//g, "");
+          var filename =
+            d +
+            "-加密锁授权申请-" +
+            data.Compname +
+            "-" +
+            data.Regionalname +
+            ".doc";
+          a.download = filename;
+          a.style.display = "none";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        });
     },
     editRow(data) {
       //修改

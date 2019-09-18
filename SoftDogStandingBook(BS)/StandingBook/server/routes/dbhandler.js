@@ -43,7 +43,7 @@ var deletes = function (db, collections, selector, fn) {
 var find = function (db, collections, selector, fn) {
   //collections="hashtable";
   var collection = db.db("data").collection(collections);
-  collection.find(selector).sort({_id:-1}).toArray(function (err, result) {
+  collection.find(selector).sort({ _id: -1 }).toArray(function (err, result) {
     //console.log(docs);
     try {
       assert.equal(err, null);
@@ -61,7 +61,7 @@ var updates = function (db, collections, selector, fn) {
   var collection = db.db("data").collection(collections);
   //需要转换_id为objectid
   // selector[0]._id=mongo.ObjectID(selector[0]._id);
-  var where={_id:mongo.ObjectId(selector[0]._id)};
+  var where = { _id: mongo.ObjectId(selector[0]._id) };
   console.log(selector);
   collection.updateOne(where, selector[1], function (err, result) {
     try {
@@ -91,7 +91,8 @@ var methodType = {
   updatePwd: updates,
   //portal部分
   showCourse: find,
-  register: add
+  register: add,
+  exportexcel: find
 };
 //主逻辑    服务器  ， 请求    --》 
 // req.route.path ==》 防止前端的请求 直接操作你的数据库

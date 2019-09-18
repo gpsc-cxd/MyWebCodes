@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var handler = require('./dbhandler')
+var Path = require('path')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -40,32 +41,51 @@ router.get('/update', function (req, res, next) {
     res.send(data);
   })
 })
+function buling(input) {
+  return input.length < 2 ? "0" + input : input;
+}
 //export word
 router.get('/exportword', function (req, res, next) {
   var param = req.query;
   var date = new Date();
-  var output = date.getFullYear().toString() + date.getMonth().toString(2) + date.getDay().toString(2) + date.getHours().toString(2) +
-    date.getMinutes().toString(2) + date.getSeconds().toString(2) + '.doc';
-    var data = param.data.replace('"','\\\"');
-  console.log(data, output);
-  var command = 'F:/陈晓东/SoftProgram/C#C++/SoftDogStandingBookConsole/SoftDogStandingBookConsole/bin/Debug/SoftDogStandingBookConsole.exe word ' + param.data + ' ' + output;
-  // window.oldOnError = window.onerror;
-  // window._command = command;
-  window.onerror = function (err) {
-    if (err.indexOf('utomation') != -1) {
-      alert('请更改你的IE的安全级别：开始->设置->控制面板->Internet选项->安全->自定义级别->对没有标记为安全的ActiveX控件进行初始化和脚本运行->启用。命令：' + window._command);
-      return true;
-    }
-    else
-      return false;
-  };
-
-  var wsh = new ActiveXObject('WScript.Shell');
-  if (wsh) wsh.Run(command);
-  wsh = null;
-  // window.onerror = window.oldOnError;
-
-  var file = new File(output);
-  res.send(file);
+  var output = date.getFullYear().toString() + buling(date.getMonth().toString()) + buling(date.getDay().toString()) + buling(date.getHours().toString()) +
+    buling(date.getMinutes().toString()) + buling(date.getSeconds().toString()) + '.doc';
+  var data = param.data.replace(/"/g, '\\\"');
+  var arg = "word " + data + " " + output;
+  console.log(arg);
+  var exec = require('child_process').exec;
+  // var path = 'F:/陈晓东/SoftProgram/C#C++/SoftDogStandingBookConsole/SoftDogStandingBookConsole/bin/Debug/'
+  var path = Path.join(__dirname, '../public/cs/');
+  var exepath = Path.join(path, 'SoftDogStandingBookConsole.exe');
+  //防止路径有空格等字符，路径前后加引号
+  exec('"' + exepath + '" ' + arg, (err, data, stderr) => {
+    console.log(err);
+    var filepath = Path.join(path, '/output/', output);
+    res.sendFile(filepath);
+  })
 })
+// router.get('/exportexcel', function (req, res, next) {
+//   var param = req.query;
+//   var date = new Date();
+//   var output = date.getFullYear().toString() + buling(date.getMonth().toString()) + buling(date.getDay().toString()) + buling(date.getHours().toString()) +
+//     buling(date.getMinutes().toString()) + buling(date.getSeconds().toString()) + '.xlsx';
+//   // var path = 'F:/陈晓东/SoftProgram/C#C++/SoftDogStandingBookConsole/SoftDogStandingBookConsole/bin/Debug/';
+//   var path = __dirname + '/public/cs/'
+//   var selector = {};
+//   selector[param.type] = new RegExp(param.keyword);
+//   console.log(selector);
+//   handler(req, res, 'standingbook', selector, Response => {
+//     Response.forEach(element => {
+//       delete element._id;
+//     });
+//     var data = JSON.stringify(Response).replace(/"/g, '\\\"');
+//     console.log(data);
+//     var arg = "excel " + data + " " + output;
+//     var exec = require('child_process').exec;
+//     exec(path + 'SoftDogStandingBookConsole.exe ' + arg, (err, data, stderr) => {
+//       var filepath = path + 'output/' + output;
+//       res.sendFile(__dirname + filepath);
+//     })
+//   })
+// })
 module.exports = router;
