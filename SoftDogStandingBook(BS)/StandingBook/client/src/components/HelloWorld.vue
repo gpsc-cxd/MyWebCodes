@@ -7,17 +7,22 @@
             <el-button type="success" @click="newClick">新增</el-button>
           </el-form-item>
           <el-form-item>
-            <el-select ref="selectedtype" v-model="selectedvalue" placeholder="请选择">
+            <el-select ref="selectedtype" v-model="selectedvalue" placeholder="请选择" style="width:200px">
               <el-option
                 v-for="item in fields"
-                :key="item.id"
+                :key="item.value"
                 :label="item.label"
                 :value="item.value"
               />
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-input ref="searchinput" placeholder="请输入搜索内容" v-model="input" />
+            <el-input
+              ref="searchinput"
+              placeholder="请输入搜索内容"
+              v-model="input"
+              @keydown.enter.native.prevent="searchClick"
+            />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="searchClick">搜索</el-button>
@@ -32,18 +37,28 @@
       border
       style="width:100%"
       max-height="600"
+      :default-sort="{prop:'Applydate',order:'descending'}"
     >
       <!-- <el-table-column fixed="left" type="selection" width="55" /> -->
-      <el-table-column fixed="left" label="操作" width="60">
+      <el-table-column type="index" width="60" fixed="left" label="序号"/>
+      <el-table-column fixed="left" label="操作" width="100">
         <template slot-scope="scope">
-          <!-- <el-button type="text" size="small" @click.native.prevent="exportRow(scope.row)">导出</el-button> -->
+          <el-button type="text" size="small" @click.native.prevent="exportRow(scope.row)">导出</el-button>
           <el-button type="text" size="small" @click.native.prevent="editRow(scope.row)">修改</el-button>
         </template>
       </el-table-column>
-      <el-table-column fixed="left" prop="Dogcode" label="加密锁编号" width="150" srotable />
-      <el-table-column prop="Applydate" label="申请日期" width="100" srotable />
-      <el-table-column prop="Compname" label="公司/部门名称" srotable />
-      <el-table-column prop="Name" label="申请人" width="80" srotable />
+      <el-table-column fixed="left" prop="Dogcode" label="加密锁编号" width="150" sortable >
+        <template slot-scope="scope">
+          <p v-html="showData(scope.row.Dogcode)"></p>
+        </template>
+      </el-table-column>
+      <el-table-column prop="Applydate" label="申请日期" width="100" sortable >
+        <template slot-scope="scope">
+          <p v-html="showData(scope.row.Applydate)"></p>
+        </template>
+      </el-table-column>
+      <el-table-column prop="Compname" label="公司/部门名称" sortable />
+      <el-table-column prop="Name" label="申请人" width="100" sortable />
       <el-table-column prop="Phonenumber" label="联系电话" width="120" />
       <el-table-column
         prop="Dogtype"
@@ -52,12 +67,12 @@
         :filters="[{text:'单机锁',value:'单机锁'},{text:'网络锁',value:'网络锁'}]"
         :filter-method="filterDogtype"
       />
-      <el-table-column prop="Expirationdate" label="过期日期" width="100" srotable />
+      <el-table-column prop="Expirationdate" label="过期日期" width="120" sortable />
       <el-table-column prop="Remark" label="备注" width="150" />
       <el-table-column prop="Regionalname" label="测区" width="80" />
       <el-table-column prop="Regionalcode" label="测区代码" width="90" />
-      <el-table-column prop="Softwarename" label="软件" srotable />
-      <el-table-column prop="Servicetype" label="办理类型" width="80" srotable />
+      <el-table-column prop="Softwarename" label="软件" sortable />
+      <el-table-column prop="Servicetype" label="办理类型" width="120" sortable />
       <el-table-column
         prop="Type"
         label="分组"
@@ -112,6 +127,21 @@ export default {
       const property = column["property"];
       return row[property] === value;
     },
+    showData(val){
+      var text = this.input;
+      if(text!=""){
+        let reg = new RegExp("("+text+")","g");
+        if(val!=null && val!==""){
+          return val.replace(reg,"<font style='color:red'>$1</font>");
+        }
+        else{
+          return val;
+        }
+      }
+      else{
+        return val;
+      }
+    },
     searchClick() {
       var type = this.$refs.selectedtype.value;
       // console.log(type);
@@ -140,11 +170,12 @@ export default {
       console.log(e);
     },
     exportRow(data) {
-      if (this.multiSelection.length == 0) {
-        //导出单个
-      } else {
-        //导出多个
-      }
+      //先去掉data._id
+      delete data._id;
+      axios.get('/api/exportword?data='+JSON.stringify(data))
+      .then(res=>{
+        console.log(res);
+      })
     },
     editRow(data) {
       //修改
