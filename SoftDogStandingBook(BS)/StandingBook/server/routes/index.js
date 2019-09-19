@@ -56,9 +56,9 @@ router.get('/exportword', function (req, res, next) {
   var exec = require('child_process').exec;
   // var path = 'F:/陈晓东/SoftProgram/C#C++/SoftDogStandingBookConsole/SoftDogStandingBookConsole/bin/Debug/'
   var path = Path.join(__dirname, '../public/cs/');
-  var exepath = Path.join(path, 'SoftDogStandingBookConsole.exe');
+  var exepath = Path.join(path, 'SoftDogStandingBookNetCore.dll');
   //防止路径有空格等字符，路径前后加引号
-  exec('"' + exepath + '" ' + arg, (err, data, stderr) => {
+  exec('dotnet "' + exepath + '" ' + arg, (err, data, stderr) => {
     console.log(err);
     var filepath = Path.join(path, '/output/', output);
     res.sendFile(filepath);

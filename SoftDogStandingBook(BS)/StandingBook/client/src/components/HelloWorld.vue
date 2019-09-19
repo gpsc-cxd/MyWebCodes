@@ -40,7 +40,7 @@
     </div>
     <el-table
       ref="filtertable"
-      :data="data"
+      :data="data.slice((currentPage-1)*pagesize,currentPage*pagesize)"
       stripe
       border
       style="width:100%"
@@ -121,6 +121,17 @@
         :filter-method="filterDogtype"
       />
     </el-table>
+    <el-pagination
+      class="fy"
+      layout="total, sizes, prev, pager, next, jumper"
+      :current-page="currentPage"
+      :page-sizes="[50,100,200]"
+      :page-size="pagesize"
+      @size-change="handleSizeChange"
+      @current-change="current_change"
+      :total="total"
+      background
+    ></el-pagination>
   </div>
 </template>
 
@@ -154,7 +165,10 @@ export default {
       selectedvalue: "Dogcode",
       input: "",
       multiSelection: [],
-      keepalive: true
+      keepalive: true,
+      pagesize: 100,
+      currentPage: 1,
+      total: 0
     };
   },
   mounted() {
@@ -162,6 +176,7 @@ export default {
     axios.get("/api/show", { params }).then(res => {
       console.log(res.data);
       this.data = res.data;
+      this.total = res.data.length;
     });
   },
   activated() {
@@ -172,6 +187,7 @@ export default {
       axios.get("/api/show", { params }).then(res => {
         console.log(res.data);
         this.data = res.data;
+        this.total = res.data.length;
         Vue.set(this.data, this.data, res.data);
       });
     }
@@ -180,6 +196,10 @@ export default {
     filterDogtype(value, row, column) {
       const property = column["property"];
       return row[property] === value;
+      console.log(this.data);
+    },
+    current_change: function(currentPage) {
+      this.currentPage = currentPage;
     },
     showData(scope) {
       var prop = scope.column.property;
@@ -220,6 +240,8 @@ export default {
         .then(res => {
           console.log(res.data);
           this.data = res.data;
+          this.currentPage = 1;
+          this.total = res.data.length;
         });
     },
     exportExcel() {
@@ -294,6 +316,10 @@ export default {
     },
     newClick() {
       this.$router.push("/insert");
+    },
+    handleSizeChange(val){
+      console.log(val);
+      this.pagesize=val;
     }
   }
 };

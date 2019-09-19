@@ -34,7 +34,9 @@ export const servicetypes = [
     { label: '延期', value: '延期' },
     { label: '新领取', value: '新领取' },
     { label: '增加测区', value: '增加测区' },
+    { label: '增加软件', value: '增加软件' },
     { label: '遗失补办', value: '遗失补办' },
+    { label: '解禁', value: '解禁' }
 ];
 export const types = [
     { label: '外部', value: '外部' },

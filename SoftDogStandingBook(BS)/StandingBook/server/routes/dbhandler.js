@@ -43,7 +43,7 @@ var deletes = function (db, collections, selector, fn) {
 var find = function (db, collections, selector, fn) {
   //collections="hashtable";
   var collection = db.db("data").collection(collections);
-  collection.find(selector).sort({ _id: -1 }).toArray(function (err, result) {
+  collection.find(selector).sort({ Applydate: -1 }).toArray(function (err, result) {
     //console.log(docs);
     try {
       assert.equal(err, null);

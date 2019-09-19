@@ -21,7 +21,7 @@ export const rules = {
     Dogtype: [{ required: true, message: '请选择加密狗类型', trigger: 'change' }],
     Expirationdate: [{ required: true, message: '请选择日期', trigger: 'change' }],
     Regionalname: [{ required: true, message: '请输入测区名称', trigger: 'blur' }],
-    Regionalcode: [{ required: true, message: '请输入测区代码', trigger: 'blur' }],
+    // Regionalcode: [{ required: true, message: '请输入测区代码', trigger: 'blur' }],
     Softwarename: [{ type: 'array', required: true, message: '请选择或添加软件名称', trigger: 'change' }, {type:'array', trigger: 'blur' }],
     Servicetype: [{ type: 'array', required: true, message: '请选择办理类型', trigger: 'change' }],
     Type: [{ required: true, required: true, message: '请选择分组', trigger: 'change' }]
