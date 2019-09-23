@@ -101,8 +101,8 @@ module.exports = function (req, res, collections, selector, fn) {
     assert.equal(null, err);
     console.log("Connected correctly to server");
     // 根据 请求的地址来确定是什么操作  （为了安全，避免前端直接通过请求url操作数据库）
-    // console.log(req.route.path);
-    methodType[req.route.path.substr(1)](db, collections, selector, fn);
+    console.log(req.route.path);
+    methodType[req.route.path.replace('/api','').substr(1)](db, collections, selector, fn);
 
     //db.close();
   });

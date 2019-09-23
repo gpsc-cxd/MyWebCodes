@@ -3,3 +3,5 @@ client/dist/
 server/node_modules/
 server/dist/
 server/public/cs/output/
+server/public/static
+server/views/index.html

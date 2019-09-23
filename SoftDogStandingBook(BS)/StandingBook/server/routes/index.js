@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 //show data
-router.get('/show', function (req, res, next) {
+router.get('/api/show', function (req, res, next) {
   var param = req.query;
   var selector = JSON.parse(param.selector);
   var parser = {};
@@ -24,7 +24,7 @@ router.get('/show', function (req, res, next) {
   })
 });
 //add data
-router.get('/add', function (req, res, next) {
+router.get('/api/add', function (req, res, next) {
   var param = req.query;
   var selector = JSON.parse(param.selector);
   console.log(selector);
@@ -33,7 +33,7 @@ router.get('/add', function (req, res, next) {
   })
 })
 //update
-router.get('/update', function (req, res, next) {
+router.get('/api/update', function (req, res, next) {
   var param = req.query;
   var selector = JSON.parse(param.selector);
   console.log(selector);
@@ -45,7 +45,7 @@ function buling(input) {
   return input.length < 2 ? "0" + input : input;
 }
 //export word
-router.get('/exportword', function (req, res, next) {
+router.get('/api/exportword', function (req, res, next) {
   var param = req.query;
   var date = new Date();
   var output = date.getFullYear().toString() + buling(date.getMonth().toString()) + buling(date.getDay().toString()) + buling(date.getHours().toString()) +
