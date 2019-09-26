@@ -12,6 +12,7 @@
                 icon="el-icon-document"
                 circle
                 @click="exportMulti"
+                :disabled="true"
               />
             </el-tooltip>
           </el-form-item>
@@ -168,6 +169,7 @@ function GetNowDate() {
 function buling(input) {
   return input.length < 2 ? "0" + input : input;
 }
+
 // axios.defaults.withCredentials=true;
 // axios.defaults.baseURL="http://localhost:3000";
 export default {
@@ -183,6 +185,7 @@ export default {
       pagesize: 100,
       currentPage: 1,
       total: 0,
+      isEnabled: false
     };
   },
   mounted() {
@@ -295,6 +298,11 @@ export default {
     handleSelectionChange(e) {
       this.multiSelection = JSON.parse(JSON.stringify(e));
       console.log(this.multiSelection);
+      if (e.length > 1) {
+        this.$refs.exportmulti.disabled = false;
+      } else {
+        this.$refs.exportmulti.disabled = true;
+      }
     },
 
     exportRow(data) {
