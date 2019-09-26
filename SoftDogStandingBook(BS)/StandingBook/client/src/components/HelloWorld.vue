@@ -3,6 +3,18 @@
     <div>
       <el-form :inline="true">
         <div>
+          <el-form-item style="align:left">
+            <el-tooltip content="合并导出" placement="left">
+              <el-button
+                class="exportmulti"
+                ref="exportmulti"
+                type="success"
+                icon="el-icon-document"
+                circle
+                @click="exportMulti"
+              />
+            </el-tooltip>
+          </el-form-item>
           <el-form-item class="fbtn">
             <el-button type="success" @click="newClick">新增</el-button>
           </el-form-item>
@@ -46,8 +58,10 @@
       style="width:100%"
       max-height="600"
       :default-sort="{prop:'Applydate',order:'descending'}"
+      @selection-change="handleSelectionChange"
+      reserve-selection="true"
     >
-      <!-- <el-table-column fixed="left" type="selection" width="55" /> -->
+      <el-table-column fixed="left" type="selection" width="55" label />
       <el-table-column type="index" width="60" fixed="left" label="序号" />
       <el-table-column fixed="left" label="操作" width="100">
         <template slot-scope="scope">
@@ -168,7 +182,7 @@ export default {
       keepalive: true,
       pagesize: 100,
       currentPage: 1,
-      total: 0
+      total: 0,
     };
   },
   mounted() {
@@ -279,9 +293,10 @@ export default {
         });
     },
     handleSelectionChange(e) {
-      this.multiSelection = e;
-      console.log(e);
+      this.multiSelection = JSON.parse(JSON.stringify(e));
+      console.log(this.multiSelection);
     },
+
     exportRow(data) {
       //先去掉data._id
       delete data._id;
@@ -317,9 +332,12 @@ export default {
     newClick() {
       this.$router.push("/insert");
     },
-    handleSizeChange(val){
+    handleSizeChange(val) {
       console.log(val);
-      this.pagesize=val;
+      this.pagesize = val;
+    },
+    exportMulti(val) {
+      console.log(this.multiSelection.length);
     }
   }
 };
