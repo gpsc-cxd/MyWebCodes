@@ -6241,11 +6241,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj",
+      "projectUniqueName": "F:\\陈晓东\\SoftProgram\\WEB\\SoftDogStandingBook(BS)\\github\\MyWebCodes\\SoftDogStandingBook(BS)\\StandingBook\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj",
       "projectName": "SoftDogStandingBookNetCore",
-      "projectPath": "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj",
+      "projectPath": "F:\\陈晓东\\SoftProgram\\WEB\\SoftDogStandingBook(BS)\\github\\MyWebCodes\\SoftDogStandingBook(BS)\\StandingBook\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj",
       "packagesPath": "C:\\Users\\Adminstrator\\.nuget\\packages\\",
-      "outputPath": "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\obj\\",
+      "outputPath": "F:\\陈晓东\\SoftProgram\\WEB\\SoftDogStandingBook(BS)\\github\\MyWebCodes\\SoftDogStandingBook(BS)\\StandingBook\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

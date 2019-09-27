@@ -3,6 +3,7 @@ using MongoDB.Driver.Builders;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace SoftDogStandingBookNetCore
@@ -23,11 +24,12 @@ namespace SoftDogStandingBookNetCore
                 return;
             }
             string input = args[1]; //json
-            string output = AppDomain.CurrentDomain.BaseDirectory + "output";    //outpudata
+            string output = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output");    //outpudata
             if (option == "word")
             {
                 var data = JsonConvert.DeserializeObject<Datas>(input);
-                Functions.ExportWord(output, data);
+                var fileName = Path.Combine(output, args[2]);
+                Functions.ExportWord(fileName, data);
             }
             else if (option == "words")
             {

@@ -15,7 +15,7 @@
           "SkiaSharp": "1.68.0",
           "System.Text.Encoding.CodePages": "4.5.1",
           "mongocsharpdriver": "2.9.1",
-          "Aspose.Words": "18.7.0.0"
+          "Aspose.Words": "18.4.0.0"
         },
         "runtime": {
           "SoftDogStandingBookNetCore.dll": {}
@@ -1263,11 +1263,11 @@
           "System.Runtime.Handles": "4.3.0"
         }
       },
-      "Aspose.Words/18.7.0.0": {
+      "Aspose.Words/18.4.0.0": {
         "runtime": {
           "Aspose.Words.dll": {
-            "assemblyVersion": "18.7.0.0",
-            "fileVersion": "18.7.0.0"
+            "assemblyVersion": "18.4.0.0",
+            "fileVersion": "18.4.0.0"
           }
         }
       }
@@ -2000,7 +2000,7 @@
       "path": "system.threading.threadpool/4.3.0",
       "hashPath": "system.threading.threadpool.4.3.0.nupkg.sha512"
     },
-    "Aspose.Words/18.7.0.0": {
+    "Aspose.Words/18.4.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

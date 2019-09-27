@@ -19,8 +19,8 @@ namespace SoftDogStandingBookNetCore
 {
     public class Functions
     {
-        public static string modelDoc = AppDomain.CurrentDomain.BaseDirectory + "Model/Model.doc";
-        public static string modelExcel = AppDomain.CurrentDomain.BaseDirectory + "Model/Model.xlsx";
+        public static string modelDoc = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Model", "Model.doc");
+        public static string modelExcel = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Model", "Model.xlsx");
 
         public static string ChangeDateString(string date)
         {
@@ -148,7 +148,7 @@ namespace SoftDogStandingBookNetCore
 
             using (var archive = ZipArchive.Create())
             {
-                foreach(var f in outFiles)
+                foreach (var f in outFiles)
                 {
                     FileInfo fi = new FileInfo(f);
                     archive.AddEntry(fi.Name, fi.OpenRead(), true);
@@ -158,7 +158,7 @@ namespace SoftDogStandingBookNetCore
             }
             dst.Dispose();
             //删除生成的单个文件
-            foreach(var f in outFiles)
+            foreach (var f in outFiles)
             {
                 File.Delete(f);
             }
