@@ -345,7 +345,35 @@ export default {
       this.pagesize = val;
     },
     exportMulti(val) {
-      console.log(this.multiSelection.length);
+      //根据多个选中值导出word，以zip压缩包形式导出（可能会有多个文件的情况）
+      if(this.multiSelection.length==0){
+        alert('数据读取错误，请重新选择');
+        return;
+      }
+      var subselecotr=[];
+      this.multiSelection.forEach(element => {
+        var sub ={};
+        sub['_id']=element._id;
+        subselecotr.push(sub);
+      });
+      var selector={};
+      selector['$or']=subselecotr;
+      axios.get('/api/multiexport?collection=standingbook&selector='+JSON.stringify(selector),
+      {responseType:'arraybuffer'})
+      .then(res=>{
+        console.log(res);
+          var blob = new Blob([res.data]);
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          var d = new Date().toISOString();
+          var filename =d + ".zip";
+            
+          a.download = filename;
+          a.style.display = "none";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+      })
     }
   }
 };

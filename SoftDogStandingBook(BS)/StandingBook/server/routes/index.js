@@ -64,6 +64,25 @@ router.get('/api/exportword', function (req, res, next) {
     res.sendFile(filepath);
   })
 })
+router.get('/api/multiexport',function(req,res,next){
+  var param = req.query;
+  var date = new Date();
+  var output = date.getFullYear().toString() + buling(date.getMonth().toString()) + buling(date.getDay().toString()) + buling(date.getHours().toString()) +
+    buling(date.getMinutes().toString()) + buling(date.getSeconds().toString()) + '.zip';
+  var data = param.selector.replace(/"/g, '\\\"');
+  var arg = "words " + data + " " + output;
+  console.log(arg);
+  var exec = require('child_process').exec;
+  // var path = 'F:/陈晓东/SoftProgram/C#C++/SoftDogStandingBookConsole/SoftDogStandingBookConsole/bin/Debug/'
+  var path = Path.join(__dirname, '../public/cs/');
+  var exepath = Path.join(path, 'SoftDogStandingBookNetCore.dll');
+  //防止路径有空格等字符，路径前后加引号
+  exec('dotnet "' + exepath + '" ' + arg, (err, data, stderr) => {
+    console.log(data);
+    var filepath = Path.join(path, '/output/', output);
+    res.sendFile(filepath);
+  })
+})
 // router.get('/exportexcel', function (req, res, next) {
 //   var param = req.query;
 //   var date = new Date();
