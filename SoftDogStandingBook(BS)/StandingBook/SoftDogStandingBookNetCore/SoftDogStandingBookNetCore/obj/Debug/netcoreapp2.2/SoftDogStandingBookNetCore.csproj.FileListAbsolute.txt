@@ -1,0 +1,13 @@
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\bin\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.deps.json
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\bin\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.runtimeconfig.json
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\bin\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.runtimeconfig.dev.json
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\bin\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.dll
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\bin\Debug\netcoreapp2.2\Aspose.Words.dll
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\obj\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.csprojAssemblyReference.cache
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\obj\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.csproj.CoreCompileInputs.cache
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\obj\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.AssemblyInfoInputs.cache
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\obj\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.AssemblyInfo.cs
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\obj\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.csproj.CopyComplete
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\bin\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.pdb
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\obj\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.dll
+F:\陈晓东\SoftProgram\C#C++\SoftDogStandingBookNetCore\SoftDogStandingBookNetCore\obj\Debug\netcoreapp2.2\SoftDogStandingBookNetCore.pdb

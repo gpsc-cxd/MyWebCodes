@@ -1,0 +1,88 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj": {}
+  },
+  "projects": {
+    "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj",
+        "projectName": "SoftDogStandingBookNetCore",
+        "projectPath": "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore.csproj",
+        "packagesPath": "C:\\Users\\Adminstrator\\.nuget\\packages\\",
+        "outputPath": "F:\\陈晓东\\SoftProgram\\C#C++\\SoftDogStandingBookNetCore\\SoftDogStandingBookNetCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Adminstrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.0": {
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.0, )",
+              "autoReferenced": true
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.9.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "SharpZipLib": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "SkiaSharp": {
+              "target": "Package",
+              "version": "[1.68.0, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[4.5.1, )"
+            },
+            "mongocsharpdriver": {
+              "target": "Package",
+              "version": "[2.9.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

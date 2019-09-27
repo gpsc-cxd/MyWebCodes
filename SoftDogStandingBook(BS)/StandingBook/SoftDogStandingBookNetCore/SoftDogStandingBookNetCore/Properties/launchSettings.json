@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SoftDogStandingBookNetCore": {
+      "commandName": "Project",
+      "commandLineArgs": "words {\\\"$or\\\":[{\\\"_id\\\":\\\"5d89ac78f30cc13e4c244b22\\\"},{\\\"_id\\\":\\\"5d89ac71f30cc13e4c244b21\\\"},{\\\"_id\\\":\\\"5d89ac51f30cc13e4c244b20\\\"}]} 20190805134001.zip"
+    }
+  }
+}
